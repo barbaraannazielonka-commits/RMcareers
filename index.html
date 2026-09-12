@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Restaurant and Food Processing Programme | Careers &amp; English Learning</title>
+
+<style>
+  :root {
+    --ink: #17212b;
+    --muted: #66727f;
+    --cream: #fff9ef;
+    --white: #ffffff;
+    --orange: #f56a2b;
+    --orange-dark: #c94a1c;
+    --yellow: #ffc857;
+    --green: #237a57;
+    --teal: #1b9aaa;
+    --purple: #7757cf;
+    --border: #e8e0d2;
+    --shadow: 0 16px 35px rgba(44, 37, 25, 0.12);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--ink);
+    line-height: 1.55;
+    background:
+      radial-gradient(circle at 10% 10%, rgba(255, 200, 87, 0.2), transparent 24rem),
+      radial-gradient(circle at 92% 25%, rgba(27, 154, 170, 0.12), transparent 24rem),
+      var(--cream);
+  }
+
+  button, input { font: inherit; }
+  button { cursor: pointer; }
+  img { max-width: 100%; }
+
+  .container { width: min(1150px, 92%); margin: auto; }
+
+  /* Navigation */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(255, 249, 239, 0.94);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    min-height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  .logo {
+    color: var(--ink);
+    text-decoration: none;
+    font-size: clamp(0.72rem, 1.6vw, 0.98rem);
+    font-weight: 900;
+    background: none;
+    border: 0;
+    padding: 0;
+    line-height: 1.2;
+    text-align: left;
+    max-width: 280px;
+  }
+  .logo span { color: var(--orange); }
+  .nav-links { display: flex; flex-wrap: wrap; gap: 18px; }
+  .nav-link { color: var(--ink); text-decoration: none; font-weight: 700; font-size: 0.92rem; background: none; border: 0; padding: 0; }
+  .nav-link:hover { color: var(--orange); }
+
+  /* Hero */
+  .hero { padding: 72px 0 55px; }
+
+  .eyebrow {
+    display: inline-block;
+    padding: 8px 14px;
+    border-radius: 99px;
+    background: #fff0e6;
+    color: var(--orange-dark);
+    font-weight: 800;
+    font-size: 0.88rem;
+  }
+
+  h1, h2, h3, p { margin-top: 0; }
+
+  h1 {
+    margin: 16px 0;
+    font-size: clamp(2.4rem, 6vw, 4.8rem);
+    line-height: 1.02;
+    letter-spacing: -3px;
+  }
+  h1 em { color: var(--orange); font-style: normal; }
+
+  .hero p { max-width: 650px; color: var(--muted); font-size: 1.1rem; }
+
+  .button-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+
+  .hero-photo {
+    margin-top: 42px;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    max-width: 800px;
+  }
+  .hero-photo img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .btn {
+    padding: 13px 18px;
+    border: 0;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 800;
+    display: inline-block;
+    transition: 0.2s;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-primary { color: white; background: var(--orange); box-shadow: 0 10px 18px rgba(245, 106, 43, 0.24); }
+  .btn-primary:hover { background: var(--orange-dark); }
+  .btn-secondary { color: var(--ink); background: white; border: 1px solid var(--border); }
+  .btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
+
+  /* General sections */
+  section { padding: 65px 0; scroll-margin-top: 90px; }
+  .section-heading { max-width: 720px; margin-bottom: 30px; }
+  .section-heading h2 { margin-bottom: 8px; font-size: clamp(1.9rem, 4vw, 2.8rem); letter-spacing: -1.5px; }
+  .section-heading p { color: var(--muted); font-size: 1.04rem; }
+
+  .quiz-box, .result-box, .vocabulary-box {
+    padding: clamp(22px, 4vw, 40px);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    background: var(--white);
+    box-shadow: var(--shadow);
+  }
+
+  .hidden { display: none !important; }
+
+  /* Quiz */
+  .quiz-progress { display: flex; justify-content: space-between; gap: 15px; color: var(--muted); font-size: 0.9rem; font-weight: 800; }
+  .progress-track { height: 9px; overflow: hidden; margin: 12px 0 30px; border-radius: 20px; background: #f0ece5; }
+  .progress-fill { width: 0; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--orange), var(--yellow)); transition: width 0.3s ease; }
+
+  .question-title { margin-bottom: 6px; font-size: clamp(1.3rem, 3vw, 1.75rem); }
+  .question-subtitle { color: var(--muted); margin-bottom: 22px; }
+
+  .option-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 13px; }
+
+  .answer-option {
+    min-height: 85px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    padding: 16px;
+    text-align: left;
+    border: 2px solid var(--border);
+    border-radius: 15px;
+    color: var(--ink);
+    background: #fffdf9;
+    font-weight: 700;
+    transition: 0.2s;
+    width: 100%;
+  }
+  .answer-option:hover, .answer-option.selected {
+    color: var(--orange-dark);
+    border-color: var(--orange);
+    background: #fff2eb;
+    transform: translateY(-2px);
+  }
+  .option-icon { font-size: 1.65rem; flex-shrink: 0; }
+  .option-sub { font-weight: 500; color: var(--muted); font-size: 0.86rem; margin-top: 3px; }
+
+  .quiz-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  /* Result section */
+  .result-header { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; margin-bottom: 8px; }
+  .result-icon {
+    width: 88px; height: 88px;
+    display: grid; place-items: center;
+    border-radius: 22px;
+    font-size: 2.6rem;
+    background: linear-gradient(145deg, var(--yellow), var(--orange));
+    box-shadow: var(--shadow);
+    flex-shrink: 0;
+  }
+  .result-kicker { color: var(--orange-dark); font-weight: 800; font-size: 0.9rem; }
+  .result-title { font-size: clamp(1.6rem, 4vw, 2.4rem); letter-spacing: -1px; margin: 2px 0 0; }
+  .result-altnames { color: var(--muted); font-size: 0.92rem; margin-top: 4px; }
+
+  .result-lede { color: var(--muted); font-size: 1.06rem; margin-top: 16px; max-width: 760px; }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 30px;
+  }
+  .info-card {
+    padding: 22px;
+    border-radius: 18px;
+    background: #fffaf2;
+    border: 1px solid var(--border);
+  }
+  .info-card h3 {
+    font-size: 1.05rem;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .info-card ul { margin: 0; padding-left: 20px; color: var(--ink); }
+  .info-card li { margin-bottom: 6px; }
+  .info-card p { color: var(--ink); }
+
+  .day-in-life {
+    margin-top: 30px;
+    padding: 22px;
+    border-radius: 18px;
+    background: #eef8f3;
+    border: 1px solid #d3ecdf;
+  }
+  .day-in-life h3 { color: var(--green); margin-bottom: 10px; }
+
+  .hazards-box {
+    margin-top: 30px;
+    padding: 22px;
+    border-radius: 18px;
+    background: #fff4e5;
+    border: 1px solid #f6d9a8;
+  }
+  .hazards-box h3 { color: #b3540a; margin-bottom: 10px; }
+  .hazards-box ul { margin: 0; padding-left: 20px; color: var(--ink); }
+  .hazards-box li { margin-bottom: 6px; }
+
+  /* Vocabulary */
+  .vocabulary-box { margin-top: 30px; background: #f5f1ff; border-color: #ded4f7; }
+  .vocabulary-box h3 { color: var(--purple); margin-bottom: 4px; }
+  .vocabulary-box > p.hint { color: var(--muted); margin-bottom: 20px; font-size: 0.95rem; }
+
+  .vocab-list { display: grid; gap: 14px; }
+  .vocab-item {
+    padding: 16px 18px;
+    border-radius: 14px;
+    background: var(--white);
+    border: 1px solid #e6def7;
+  }
+  .vocab-term { font-weight: 900; color: var(--ink); }
+  .vocab-pos { font-weight: 700; color: var(--purple); font-size: 0.82rem; margin-left: 6px; }
+  .vocab-def { color: var(--ink); margin-top: 4px; }
+  .vocab-example { color: var(--muted); margin-top: 6px; font-style: italic; }
+
+  .result-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 34px; }
+
+  /* Explore all careers */
+  .category-block { margin-bottom: 44px; }
+  .category-block:last-child { margin-bottom: 0; }
+  .category-heading { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+  .category-heading .cat-icon {
+    width: 40px; height: 40px;
+    border-radius: 12px;
+    display: grid; place-items: center;
+    font-size: 1.2rem;
+    background: #fff0e6;
+  }
+  .category-heading h3 { font-size: 1.15rem; letter-spacing: -0.5px; }
+
+  .career-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .career-card {
+    text-align: left;
+    padding: 20px;
+    border-radius: 18px;
+    border: 1px solid var(--border);
+    background: var(--white);
+    box-shadow: var(--shadow);
+    transition: 0.2s;
+  }
+  .career-card:hover { transform: translateY(-4px); border-color: var(--orange); }
+  .career-card .career-icon {
+    width: 48px; height: 48px;
+    border-radius: 13px;
+    display: grid; place-items: center;
+    font-size: 1.4rem;
+    background: #fff0e6;
+    margin-bottom: 12px;
+  }
+  .career-card h4 { font-size: 1.05rem; margin-bottom: 5px; }
+  .career-card p { color: var(--muted); font-size: 0.9rem; margin: 0; }
+
+  footer {
+    padding: 40px 0;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 1.15rem;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  @media (max-width: 820px) {
+    .info-grid { grid-template-columns: 1fr; }
+    .career-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 560px) {
+    .nav-links { display: none; }
+    .option-grid { grid-template-columns: 1fr; }
+    .career-grid { grid-template-columns: 1fr; }
+    h1 { letter-spacing: -1.5px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container nav-inner">
+    <button type="button" class="logo" data-target="top">RESTAURANT AND FOOD PROCESSING PROGRAMME</button>
+    <div class="nav-links">
+      <button type="button" class="nav-link" data-target="quiz">Take the Quiz</button>
+      <button type="button" class="nav-link" data-target="careers">All Careers</button>
+      <button type="button" class="nav-link hidden" id="nav-result" data-target="result">My Result</button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="container">
+    <span class="eyebrow">Careers + English Practice</span>
+    <h1>Which food industry job is <em>right</em> for you?</h1>
+    <p>Answer six quick questions about what you enjoy, then discover which of 23 real food-industry jobs matches you best. You'll read about the role and learn new English words used in that profession.</p>
+    <div class="button-row">
+      <button type="button" class="btn btn-primary" data-target="quiz">Start the quiz</button>
+      <button type="button" class="btn btn-secondary" data-target="careers">Browse all careers</button>
+    </div>
+    <div class="hero-photo">
+      <img src="data:image/jpeg;base64,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" alt="A chef carefully plating a dish in a professional kitchen" />
+    </div>
+  </div>
+</header>
+
+<section id="quiz">
+  <div class="container">
+    <div class="section-heading">
+      <h2>Find your future food job</h2>
+      <p>Answer six quick questions. There are no wrong answers — just pick what sounds most like you.</p>
+    </div>
+
+    <div class="quiz-box" id="quiz-box">
+      <div class="quiz-progress">
+        <span id="progress-label">Question 1 of 6</span>
+        <span id="progress-percent">0%</span>
+      </div>
+      <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+
+      <h3 class="question-title" id="question-title"></h3>
+      <p class="question-subtitle" id="question-subtitle"></p>
+      <div class="option-grid" id="option-grid"></div>
+
+      <div class="quiz-actions">
+        <button class="btn btn-secondary" id="back-btn" disabled>Back</button>
+        <button class="btn btn-primary" id="next-btn" disabled>Next question</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="result" class="hidden">
+  <div class="container">
+    <div class="section-heading">
+      <h2>Your future job</h2>
+      <p>Here's a food career that matches your answers. Read about it below, then check the new vocabulary.</p>
+    </div>
+
+    <div class="result-box">
+      <div class="result-header">
+        <div class="result-icon" id="result-icon">👩‍🍳</div>
+        <div>
+          <div class="result-kicker">Your best match is...</div>
+          <h3 class="result-title" id="result-title">Chef</h3>
+          <div class="result-altnames" id="result-altnames"></div>
+        </div>
+      </div>
+      <p class="result-lede" id="result-lede"></p>
+
+      <div class="info-grid">
+        <div class="info-card">
+          <h3>🎯 Skills you'll use</h3>
+          <ul id="result-skills"></ul>
+        </div>
+        <div class="info-card">
+          <h3>🎓 How to get there</h3>
+          <ul id="result-path"></ul>
+        </div>
+      </div>
+
+      <div class="day-in-life">
+        <h3>🕒 A day in the life</h3>
+        <p id="result-day"></p>
+      </div>
+
+      <div class="hazards-box">
+        <h3>⚠️ Hazards &amp; risks</h3>
+        <ul id="result-hazards"></ul>
+      </div>
+
+      <div class="vocabulary-box">
+        <h3>📖 New words for this job</h3>
+        <p class="hint">Read each word, its meaning, and an example sentence. These words are useful for talking about this career in English.</p>
+        <div class="vocab-list" id="result-vocab"></div>
+      </div>
+
+      <div class="result-actions">
+        <button class="btn btn-primary" id="retake-btn">Retake the quiz</button>
+        <button type="button" class="btn btn-secondary" data-target="careers">See other careers</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="careers">
+  <div class="container">
+    <div class="section-heading">
+      <h2>Explore every career</h2>
+      <p>Curious about a job you didn't get? Click any card to read about it and learn its vocabulary.</p>
+    </div>
+    <div id="career-groups"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">Nannestad High School — Barbara Anna Zielonka</div>
+</footer>
+
+<script>
+  // ---------- Career data (23 food-industry roles) ----------
+  const careers = {
+    baker: {
+      icon: "🍞", title: "Baker", altNames: "Industrial baker, master baker, artisan baker",
+      lede: "Bakers mix, shape, and bake bread, cakes, and pastries, either by hand in a small bakery or using large machines in a bigger bakery.",
+      skills: ["Following recipes and measuring ingredients accurately", "Working early hours with energy and focus", "Attention to timing and temperature"],
+      path: ["Learn basic baking at home or in a food class", "Get an entry-level job or apprenticeship in a bakery", "Build skill from assistant baker up to master baker"],
+      day: "A baker usually starts very early in the morning. They weigh ingredients, mix dough, shape loaves, and watch ovens closely so nothing burns. Later, they clean equipment and prepare for the next day.",
+      hazards: ["Burns from hot ovens and baking trays", "Breathing in flour dust over time", "Tired muscles from early hours and repetitive kneading"],
+      vocab: [
+        {term:"dough", pos:"noun", def:"a soft mixture of flour and liquid used to make bread or pastry", ex:"She kneaded the dough for ten minutes."},
+        {term:"batch", pos:"noun", def:"a group of items made at the same time", ex:"The bakery sells out of the morning batch by 9am."},
+        {term:"knead", pos:"verb", def:"to press and fold dough with your hands", ex:"He learned how to knead bread dough at college."}
+      ]
+    },
+    bar_person: {
+      icon: "🍹", title: "Bar Person", altNames: "Bar staff",
+      lede: "Bar staff serve drinks and look after customers in places like pubs, clubs, wine bars, hotels, and leisure centres.",
+      skills: ["Friendly communication with customers", "Working quickly during busy periods", "Basic maths for handling money and orders"],
+      path: ["Get part-time experience serving customers", "Learn about different drinks and how to serve them safely", "Move up to senior bar staff or supervisor roles"],
+      day: "A bar person sets up the bar, checks stock, and serves drinks to customers throughout their shift. They take orders, handle payment, and keep the bar area clean and welcoming.",
+      hazards: ["Slips on wet or sticky floors", "Cuts from broken glass or bottles", "Heavy lifting when moving kegs and crates"],
+      vocab: [
+        {term:"stock", pos:"noun", def:"the supply of drinks or goods kept ready to sell", ex:"They checked the stock before opening the bar."},
+        {term:"order", pos:"noun", def:"a request for food or drink from a customer", ex:"The bar person took the next order quickly."},
+        {term:"tab", pos:"noun", def:"a record of drinks a customer will pay for later", ex:"Can I open a tab for the table?"}
+      ]
+    },
+    barista: {
+      icon: "☕", title: "Barista", altNames: "",
+      lede: "Baristas make and serve coffee and other drinks in cafes, coffee shop chains, restaurants, and hotels.",
+      skills: ["Skill with coffee machines and drink recipes", "Speed and consistency during busy hours", "Friendly customer service"],
+      path: ["Practice making coffee drinks, even at home", "Get trained on the job at a cafe or coffee chain", "Improve with barista courses or competitions"],
+      day: "A barista opens the coffee machine, grinds beans, and starts making drinks as soon as customers arrive. They take orders, prepare each drink carefully, and keep the counter clean between customers.",
+      hazards: ["Burns from steam wands and hot milk", "Repetitive strain in the hands and wrists", "Standing for long periods on hard floors"],
+      vocab: [
+        {term:"espresso", pos:"noun", def:"a strong, small coffee made by forcing hot water through ground coffee", ex:"He ordered a double espresso."},
+        {term:"grind", pos:"verb", def:"to crush coffee beans into small pieces", ex:"She grinds fresh beans every morning."},
+        {term:"steam", pos:"verb", def:"to heat milk with hot steam to make it foamy", ex:"The barista steamed the milk for the latte."}
+      ]
+    },
+    butcher: {
+      icon: "🥩", title: "Butcher", altNames: "",
+      lede: "Butchers prepare and sell meat and poultry, and make products like sausages, burgers, and pies.",
+      skills: ["Careful and safe use of knives and tools", "Knowledge of different cuts of meat", "Good customer service and product knowledge"],
+      path: ["Start as a shop or counter assistant to learn the basics", "Train in meat preparation and food safety", "Progress to a qualified or master butcher"],
+      day: "A butcher receives fresh meat deliveries, cuts and prepares different products, and sets up the counter. They also talk to customers, answering questions and recommending cuts for different meals.",
+      hazards: ["Cuts from knives and sharp tools", "Injuries from machinery such as mincers or saws", "Working in cold storage temperatures"],
+      vocab: [
+        {term:"cut", pos:"noun", def:"a specific piece of meat taken from an animal", ex:"This cut is perfect for a slow roast."},
+        {term:"poultry", pos:"noun", def:"birds such as chicken and turkey that are raised for food", ex:"The shop sells fresh poultry every day."},
+        {term:"mince", pos:"noun/verb", def:"meat cut into very small pieces, or to cut it that way", ex:"She bought mince to make burgers."}
+      ]
+    },
+    cake_decorator: {
+      icon: "🎂", title: "Cake Decorator", altNames: "",
+      lede: "Cake decorators design, make, and decorate cakes for birthdays, weddings, and other special occasions.",
+      skills: ["Artistic and creative design skills", "Steady hands for detailed decoration", "Planning around customer requests and deadlines"],
+      path: ["Practice baking and decorating cakes as a hobby", "Take a course in cake design or work under an experienced decorator", "Build a portfolio and take on bigger events"],
+      day: "A cake decorator meets clients to discuss designs, then bakes and prepares the cake base. Most of the day is spent carefully icing, piping, and adding details so the final cake matches the customer's idea.",
+      hazards: ["Repetitive strain in the hands from detailed piping work", "Allergic reactions when handling nuts, eggs or dairy", "Standing for long periods while decorating"],
+      vocab: [
+        {term:"icing", pos:"noun", def:"a sweet covering put on top of a cake", ex:"She spread a thin layer of icing over the cake."},
+        {term:"piping", pos:"noun", def:"decorative lines or shapes made by squeezing icing through a bag", ex:"The piping around the edge looked very neat."},
+        {term:"tier", pos:"noun", def:"one layer of a multi-layered cake", ex:"The wedding cake had three tiers."}
+      ]
+    },
+    catering_manager: {
+      icon: "📋", title: "Catering Manager", altNames: "Food service manager",
+      lede: "Catering managers run the food service of organisations such as restaurants, bars, schools, colleges, and outside suppliers.",
+      skills: ["Organising staff, schedules, and supplies", "Managing budgets and costs", "Solving problems quickly during service"],
+      path: ["Gain experience working in food service roles", "Learn about hospitality management on the job or through study", "Move into a supervisor or catering manager role"],
+      day: "A catering manager plans menus, orders supplies, and manages staff schedules. During service, they check that food quality and customer service meet standards, and deal with any problems that come up.",
+      hazards: ["Stress from tight deadlines and busy events", "Long or irregular working hours", "Manual handling strain from moving stock or equipment"],
+      vocab: [
+        {term:"supplier", pos:"noun", def:"a business that provides ingredients or products", ex:"The manager called the supplier about a late delivery."},
+        {term:"stock control", pos:"noun", def:"keeping track of how much food and supplies you have", ex:"Good stock control helps avoid running out of items."},
+        {term:"service", pos:"noun", def:"the period when food is prepared and served to customers", ex:"Lunch service starts at noon."}
+      ]
+    },
+    cellar_technician: {
+      icon: "🔧", title: "Cellar Technician", altNames: "Drinks dispense technician, cellar service engineer, beer quality technician",
+      lede: "Cellar technicians install and maintain the drinks systems used in pubs, bars, hotels, and restaurants.",
+      skills: ["Technical and mechanical skills", "Understanding how drinks systems and pipes work", "Careful attention to hygiene and quality"],
+      path: ["Learn basic plumbing or technical skills", "Train with a drinks or brewery company", "Specialise as a qualified cellar technician"],
+      day: "A cellar technician travels between venues, checking and repairing drinks dispense systems. They clean pipes, test quality, and fix any equipment that isn't working properly before service starts.",
+      hazards: ["Exposure to carbon dioxide gas in cellars", "Working in confined, poorly ventilated spaces", "Heavy lifting of barrels and kegs"],
+      vocab: [
+        {term:"dispense", pos:"verb", def:"to give out a drink from a machine or tap", ex:"The system dispenses beer through several taps."},
+        {term:"pipeline", pos:"noun", def:"a pipe used to carry liquid from one place to another", ex:"They cleaned the pipeline connecting the cellar to the bar."},
+        {term:"maintain", pos:"verb", def:"to keep equipment working properly", ex:"He maintains the drinks systems for ten local pubs."}
+      ]
+    },
+    chef: {
+      icon: "👨‍🍳", title: "Chef", altNames: "Cook",
+      lede: "Chefs prepare, cook, and present food in hotels, bars, and restaurants.",
+      skills: ["Skilled use of cooking techniques", "Working fast and calmly under pressure", "Creativity with flavours and presentation"],
+      path: ["Learn to cook at home or in a class", "Start as a kitchen assistant or trainee chef", "Gain experience across different sections of the kitchen"],
+      day: "A chef checks deliveries, preps ingredients, and plans the menu for the day. During service, they cook dishes quickly, taste and check every plate, and work closely with the rest of the kitchen team.",
+      hazards: ["Burns from hot surfaces, ovens and oil", "Cuts from knives and kitchen equipment", "Slips on wet kitchen floors during busy service"],
+      vocab: [
+        {term:"menu", pos:"noun", def:"a list of dishes a restaurant offers", ex:"The chef added a new dish to the menu."},
+        {term:"garnish", pos:"noun/verb", def:"a decoration added to a dish before serving", ex:"He used herbs to garnish the plate."},
+        {term:"prep", pos:"noun", def:"preparing ingredients before cooking begins", ex:"Prep starts two hours before the restaurant opens."}
+      ]
+    },
+    counter_service_assistant: {
+      icon: "🛎️", title: "Counter Service Assistant", altNames: "",
+      lede: "Counter service assistants greet, serve, and take payment from customers buying food and drink.",
+      skills: ["Friendly and clear communication", "Handling money and orders accurately", "Working efficiently during busy times"],
+      path: ["Apply for entry-level roles in cafes, shops, or fast food outlets", "Learn the till system and food handling basics on the job", "Move up to shift leader or supervisor roles"],
+      day: "A counter service assistant greets each customer, takes their order, and prepares simple food or drink items. They also handle payments and keep the counter area clean and organised.",
+      hazards: ["Burns from handling hot food or drinks", "Repetitive strain from using the till", "Standing for long periods during busy shifts"],
+      vocab: [
+        {term:"till", pos:"noun", def:"the machine used to take payments in a shop", ex:"She rang up the order on the till."},
+        {term:"queue", pos:"noun", def:"a line of people waiting to be served", ex:"There was a long queue at lunchtime."},
+        {term:"receipt", pos:"noun", def:"a printed paper that proves a payment was made", ex:"He gave the customer a receipt."}
+      ]
+    },
+    fish_frier: {
+      icon: "🍟", title: "Fish Frier", altNames: "Fish and chip shop assistant, takeaway counter assistant",
+      lede: "Fish friers work in fish and chip shops and seafood restaurants, preparing and cooking food and serving customers.",
+      skills: ["Safe use of fryers and hot oil", "Working quickly during busy periods", "Good customer service at the counter"],
+      path: ["Get a part-time job in a fish and chip shop", "Learn food safety and frying techniques on the job", "Become a senior frier or shop supervisor"],
+      day: "A fish frier prepares fish and potatoes, then fries them to order throughout their shift. Between orders, they serve customers at the counter and keep the frying area clean and safe.",
+      hazards: ["Burns from hot oil and fryer splashes", "Fire risk from fryers and hot equipment", "Slips on greasy or wet floors"],
+      vocab: [
+        {term:"batter", pos:"noun", def:"a wet mixture used to coat food before frying", ex:"The fish is dipped in batter before frying."},
+        {term:"fryer", pos:"noun", def:"a machine used to cook food in hot oil", ex:"He checked the oil temperature in the fryer."},
+        {term:"takeaway", pos:"noun", def:"food bought at a shop to eat somewhere else", ex:"They ordered a takeaway on Friday night."}
+      ]
+    },
+    fishmonger: {
+      icon: "🐟", title: "Fishmonger", altNames: "Fish seller",
+      lede: "Fishmongers sell fish and seafood products, and advise customers on how to prepare them.",
+      skills: ["Knowledge of different fish and seafood", "Skill with preparing and filleting fish", "Clear advice and good customer service"],
+      path: ["Get experience working at a fish counter or market stall", "Learn how to handle, store, and prepare fish safely", "Progress to running your own fish stall or shop"],
+      day: "A fishmonger arranges fresh fish deliveries on display, then spends the day preparing orders, filleting fish, and helping customers choose the right seafood for their recipes.",
+      hazards: ["Cuts from filleting knives", "Slips on wet or icy floors", "Working in cold, damp conditions for long periods"],
+      vocab: [
+        {term:"fillet", pos:"noun/verb", def:"a piece of fish with the bones removed, or to remove them", ex:"She filleted the fish before wrapping it."},
+        {term:"seafood", pos:"noun", def:"fish and other sea animals eaten as food", ex:"The shop sells fresh seafood every morning."},
+        {term:"catch", pos:"noun", def:"the fish caught on a fishing trip", ex:"Today's catch included salmon and cod."}
+      ]
+    },
+    food_factory_worker: {
+      icon: "🏭", title: "Food Factory Worker", altNames: "Food process operative, food processing worker",
+      lede: "Food factory workers help make frozen, tinned, baked, and dried food products in large quantities.",
+      skills: ["Following clear instructions and procedures", "Working accurately with machines", "Attention to hygiene and safety rules"],
+      path: ["Apply for entry-level roles in a food factory", "Learn how to operate specific machines safely", "Move into supervisor or quality roles with experience"],
+      day: "A food factory worker operates or watches machines that prepare, cook, or package food. They check products for quality, follow safety procedures, and keep their work area clean throughout their shift.",
+      hazards: ["Injuries from moving machinery parts", "Repetitive strain injuries from repeated tasks", "Exposure to loud noise and cold storage areas"],
+      vocab: [
+        {term:"production line", pos:"noun", def:"a series of machines and workers that make a product step by step", ex:"He works on the packaging production line."},
+        {term:"batch", pos:"noun", def:"a group of food products made at the same time", ex:"This batch of soup passed all quality checks."},
+        {term:"hygiene", pos:"noun", def:"keeping things clean to prevent illness", ex:"Good hygiene is essential in a food factory."}
+      ]
+    },
+    food_manufacturing_inspector: {
+      icon: "🔍", title: "Food Manufacturing Inspector", altNames: "Food quality control inspector, food safety officer",
+      lede: "Food manufacturing inspectors make sure food companies meet hygiene and safety standards, and that products are safe to eat.",
+      skills: ["Careful attention to detail", "Knowledge of food safety rules", "Clear reporting and record-keeping"],
+      path: ["Study food science, biology, or a related subject", "Gain experience in food production or quality roles", "Train as a qualified food safety or quality inspector"],
+      day: "A food manufacturing inspector visits or works in factories, checking that food is made and stored safely. They test samples, check records, and report any problems that need to be fixed.",
+      hazards: ["Exposure to cleaning chemicals and disinfectants", "Hazards from working near factory machinery", "Travel-related tiredness from visiting multiple sites"],
+      vocab: [
+        {term:"standard", pos:"noun", def:"an agreed level of quality or safety that must be met", ex:"The factory met all food safety standards."},
+        {term:"contamination", pos:"noun", def:"when something harmful gets into food unintentionally", ex:"The inspector checked for signs of contamination."},
+        {term:"audit", pos:"noun", def:"an official check of a company's records or processes", ex:"The factory passed its yearly safety audit."}
+      ]
+    },
+    head_chef: {
+      icon: "👨‍🍳", title: "Head Chef", altNames: "Kitchen manager, executive chef, chef de cuisine",
+      lede: "Head chefs oversee a restaurant's kitchen staff, food, and budgets.",
+      skills: ["Strong leadership and organisation", "Deep cooking knowledge and experience", "Managing costs and stock"],
+      path: ["Build years of experience as a chef in different kitchens", "Take on more responsibility as a sous chef", "Move up to head chef through skill and reputation"],
+      day: "A head chef plans menus, orders ingredients, and manages the kitchen budget. During service, they lead the team, check every dish before it leaves the kitchen, and solve any problems quickly.",
+      hazards: ["Burns and cuts from cooking equipment", "High stress from long hours and pressure to perform", "Standing and being on your feet for long shifts"],
+      vocab: [
+        {term:"sous chef", pos:"noun", def:"the chef who is second-in-command in a kitchen", ex:"The sous chef ran the kitchen while the head chef was away."},
+        {term:"budget", pos:"noun", def:"a plan for how much money can be spent", ex:"The head chef kept the kitchen within budget."},
+        {term:"brigade", pos:"noun", def:"the team of chefs and kitchen staff working together", ex:"The kitchen brigade worked well together during the busy evening."}
+      ]
+    },
+    kitchen_assistant: {
+      icon: "🥕", title: "Kitchen Assistant", altNames: "",
+      lede: "Kitchen assistants prepare food, make sure chefs have everything they need, and keep the kitchen clean.",
+      skills: ["Basic food preparation skills", "Working well as part of a team", "Staying organised in a busy kitchen"],
+      path: ["Apply for entry-level kitchen roles", "Learn food safety and basic prep skills on the job", "Progress towards a chef or specialist kitchen role"],
+      day: "A kitchen assistant washes, peels, and chops ingredients, then supports chefs during service by keeping stations stocked. They also help clean equipment and surfaces throughout the shift.",
+      hazards: ["Cuts from knives and food preparation tools", "Burns from hot pans, ovens and liquids", "Slips on wet floors and heavy lifting of pots"],
+      vocab: [
+        {term:"peel", pos:"verb", def:"to remove the skin from a fruit or vegetable", ex:"He peeled the potatoes before boiling them."},
+        {term:"station", pos:"noun", def:"a specific work area in a kitchen", ex:"Each chef works at a different station."},
+        {term:"restock", pos:"verb", def:"to refill supplies that have run low", ex:"She restocked the vegetables before the dinner rush."}
+      ]
+    },
+    kitchen_porter: {
+      icon: "🧽", title: "Kitchen Porter", altNames: "Kitchen hand, kitchen attendant",
+      lede: "Kitchen porters clean, wash up, and prepare food to keep hotel, restaurant, and hospital kitchens running smoothly.",
+      skills: ["Working efficiently under time pressure", "Reliability and teamwork", "Following hygiene and safety procedures"],
+      path: ["Apply for entry-level kitchen porter roles", "Learn kitchen hygiene standards on the job", "Move into food preparation or chef training roles"],
+      day: "A kitchen porter washes dishes, pots, and equipment throughout the day, and helps keep the kitchen organised. They may also help with simple food preparation tasks when the kitchen is busy.",
+      hazards: ["Skin irritation from hot water and cleaning chemicals", "Slips on wet floors near sinks and dishwashers", "Heavy lifting and repetitive strain from washing up"],
+      vocab: [
+        {term:"dishwasher", pos:"noun", def:"a machine or person that washes dishes", ex:"The kitchen porter loaded the dishwasher quickly."},
+        {term:"surface", pos:"noun", def:"the top of a table, counter, or work area", ex:"He wiped down every surface before closing."},
+        {term:"rota", pos:"noun", def:"a schedule showing when staff are working", ex:"Check the rota to see your next shift."}
+      ]
+    },
+    meat_process_worker: {
+      icon: "🥓", title: "Meat Process Worker", altNames: "Meat factory worker, abattoir worker, slaughterhouse worker",
+      lede: "Meat process workers produce meat products for the food manufacturing, catering, and retail industries.",
+      skills: ["Careful and safe use of equipment", "Working accurately under hygiene rules", "Physical stamina for repetitive tasks"],
+      path: ["Apply for entry-level roles in a meat processing plant", "Learn food safety and processing procedures on the job", "Progress to supervisor or specialist processing roles"],
+      day: "A meat process worker prepares, cuts, or packages meat products following strict safety and hygiene rules. They work as part of a team to keep production moving smoothly and safely.",
+      hazards: ["Cuts and injuries from sharp tools and machinery", "Working in cold processing environments", "Repetitive strain injuries from repeated cutting motions"],
+      vocab: [
+        {term:"process", pos:"verb", def:"to prepare raw materials into a finished product", ex:"The plant processes meat into sausages and burgers."},
+        {term:"packaging", pos:"noun", def:"the material used to wrap or contain a product", ex:"New packaging keeps the meat fresh for longer."},
+        {term:"protective equipment", pos:"noun", def:"clothing or gear worn to stay safe at work", ex:"Workers must wear protective equipment at all times."}
+      ]
+    },
+    microbrewer: {
+      icon: "🍺", title: "Microbrewer", altNames: "Craft brewer, craft distiller",
+      lede: "Microbrewers produce and market their own alcoholic drinks, such as beers, ciders, and gins.",
+      skills: ["Knowledge of brewing or distilling science", "Creativity in developing new recipes", "Business skills for marketing and sales"],
+      path: ["Learn about brewing through courses or home experiments", "Gain experience working at an existing brewery", "Start or join a small microbrewery business"],
+      day: "A microbrewer checks fermenting tanks, tests the quality of the drink, and adjusts recipes when needed. They also spend time on business tasks, like packaging, marketing, and selling their products.",
+      hazards: ["Exposure to carbon dioxide gas during fermentation", "Heavy lifting of ingredients, barrels and kegs", "Burns from hot liquids during the brewing process"],
+      vocab: [
+        {term:"ferment", pos:"verb", def:"to change sugar into alcohol using yeast", ex:"The beer ferments for about two weeks."},
+        {term:"batch", pos:"noun", def:"a specific amount of a drink made at one time", ex:"This batch has a stronger flavour than usual."},
+        {term:"brew", pos:"verb", def:"to make beer or similar drinks by boiling and fermenting", ex:"They brew a new beer every month."}
+      ]
+    },
+    pastry_chef: {
+      icon: "🥐", title: "Pastry Chef", altNames: "",
+      lede: "Pastry chefs specialise in making pastries, desserts, breads, and other baked dishes.",
+      skills: ["Precision with recipes and measurements", "Creativity in dessert design", "Patience for detailed, careful work"],
+      path: ["Learn baking basics at home or in a class", "Train in a bakery or restaurant pastry section", "Specialise further through pastry courses or competitions"],
+      day: "A pastry chef prepares dough, batters, and fillings, then bakes and assembles desserts throughout the day. They also decorate finished items carefully before they are served to customers.",
+      hazards: ["Burns from ovens and hot equipment", "Repetitive strain from detailed, repeated tasks", "Allergic reactions when handling nuts, eggs or dairy"],
+      vocab: [
+        {term:"pastry", pos:"noun", def:"dough made with flour, fat, and water, used for pies and tarts", ex:"She rolled out the pastry for the tart."},
+        {term:"filling", pos:"noun", def:"the mixture placed inside a pastry, cake, or pie", ex:"The pie has a sweet apple filling."},
+        {term:"glaze", pos:"noun/verb", def:"a shiny coating added to baked goods", ex:"He brushed a sugar glaze over the pastries."}
+      ]
+    },
+    restaurant_manager: {
+      icon: "🍴", title: "Restaurant Manager", altNames: "Fast food restaurant manager, hotel restaurant manager",
+      lede: "Restaurant managers oversee their venue and make sure customers are satisfied with the food and service.",
+      skills: ["Leadership and staff management", "Handling customer complaints calmly", "Organisation and attention to detail"],
+      path: ["Gain experience working in restaurant service roles", "Take on supervisor responsibilities to build management skills", "Move into a full restaurant manager position"],
+      day: "A restaurant manager checks staffing, stock, and bookings before opening. During service, they oversee the team, greet guests, and resolve any issues to keep customers happy.",
+      hazards: ["Stress from handling customer complaints", "Long, irregular hours including evenings and weekends", "Manual handling strain when helping with stock or setup"],
+      vocab: [
+        {term:"booking", pos:"noun", def:"an arrangement to reserve a table in advance", ex:"We have a booking for four people at 7pm."},
+        {term:"complaint", pos:"noun", def:"a statement that something is wrong or unsatisfactory", ex:"The manager handled the complaint politely."},
+        {term:"venue", pos:"noun", def:"the place where an event or business takes place", ex:"The restaurant is a popular venue for celebrations."}
+      ]
+    },
+    school_lunchtime_supervisor: {
+      icon: "🧒", title: "School Lunchtime Supervisor", altNames: "Lunchtime assistant",
+      lede: "School lunchtime supervisors work in primary, secondary, and special schools, looking after children during the lunch break.",
+      skills: ["Patience and care with children", "Clear communication and calm authority", "Awareness of safety and wellbeing"],
+      path: ["Apply for a lunchtime supervisor role at a local school", "Complete basic safeguarding and first aid training", "Gain experience to move into wider school support roles"],
+      day: "A lunchtime supervisor helps children queue for food, encourages healthy eating habits, and supervises play during the break. They also help resolve small disagreements and keep children safe.",
+      hazards: ["Exposure to illness from close contact with children", "Slips on spilled food or drink in dining areas", "Stress from managing behavioural incidents"],
+      vocab: [
+        {term:"supervise", pos:"verb", def:"to watch over and make sure people are safe and behaving well", ex:"She supervises the playground at lunchtime."},
+        {term:"safeguarding", pos:"noun", def:"actions taken to protect children from harm", ex:"All staff complete safeguarding training."},
+        {term:"break", pos:"noun", def:"a short period of rest during the school day", ex:"Students eat lunch during the midday break."}
+      ]
+    },
+    street_food_trader: {
+      icon: "🚚", title: "Street Food Trader", altNames: "Mobile caterer",
+      lede: "Street food traders run their own businesses, serving food and drinks from a stall or van.",
+      skills: ["Cooking skills for a small, fast-paced setup", "Business and money management", "Marketing to attract customers"],
+      path: ["Develop a signature food idea or recipe", "Learn about food hygiene rules and business licences", "Start trading at markets or events, and grow from there"],
+      day: "A street food trader sets up their stall or van early, prepares ingredients, and starts serving customers throughout the day. They also manage payments, stock, and cleaning between busy periods.",
+      hazards: ["Working outdoors in all weather conditions", "Burns from hot equipment in a small, confined space", "Manual handling strain when setting up and packing away"],
+      vocab: [
+        {term:"stall", pos:"noun", def:"a small stand used to sell food or goods outdoors", ex:"They run a food stall at the weekend market."},
+        {term:"licence", pos:"noun", def:"official permission to run a certain type of business", ex:"You need a licence to trade street food."},
+        {term:"signature dish", pos:"noun", def:"a dish a business is especially known for", ex:"Their signature dish is a spicy noodle bowl."}
+      ]
+    },
+    waiter: {
+      icon: "🍽️", title: "Waiter", altNames: "Waitress, waiting staff, server",
+      lede: "Waiters serve food and drinks to customers in restaurants and cafes, take orders, and handle payments.",
+      skills: ["Friendly and attentive customer service", "Good memory for orders and details", "Working calmly during busy service"],
+      path: ["Apply for part-time serving roles at a local restaurant or cafe", "Learn menu knowledge and table service skills on the job", "Progress to senior waiting staff or supervisor roles"],
+      day: "A waiter greets guests, explains the menu, and takes their orders. Throughout the meal, they bring food and drinks, check on customers, and handle the bill at the end.",
+      hazards: ["Burns from carrying hot plates and drinks", "Slips on wet or busy restaurant floors", "Standing and walking for long periods during service"],
+      vocab: [
+        {term:"table service", pos:"noun", def:"serving food and drinks directly to a customer's table", ex:"The restaurant offers full table service."},
+        {term:"bill", pos:"noun", def:"the total amount a customer must pay", ex:"Could we have the bill, please?"},
+        {term:"regular", pos:"noun", def:"a customer who visits often", ex:"He's a regular at this cafe."}
+      ]
+    }
+  };
+
+  // ---------- Categories (group the 23 careers) ----------
+  const categories = {
+    kitchen: {
+      icon: "🍳", label: "Cooking in a professional kitchen",
+      hint: "You enjoy cooking, preparing food, and working in a fast kitchen team.",
+      careers: ["chef", "head_chef", "kitchen_assistant", "kitchen_porter", "fish_frier"]
+    },
+    hospitality: {
+      icon: "🍽️", label: "Serving customers & hospitality",
+      hint: "You like talking to people and giving great service.",
+      careers: ["waiter", "bar_person", "barista", "counter_service_assistant"]
+    },
+    baking: {
+      icon: "🧁", label: "Baking, cakes & pastry",
+      hint: "You enjoy precise, creative work with dough, cakes, and desserts.",
+      careers: ["baker", "cake_decorator", "pastry_chef"]
+    },
+    butchery: {
+      icon: "🥩", label: "Butchery & fresh food retail",
+      hint: "You like hands-on preparation and selling fresh produce.",
+      careers: ["butcher", "fishmonger"]
+    },
+    production: {
+      icon: "🏭", label: "Food production, safety & drinks",
+      hint: "You're interested in how food and drinks are made, checked, and kept safe on a larger scale.",
+      careers: ["food_factory_worker", "meat_process_worker", "food_manufacturing_inspector", "cellar_technician", "microbrewer"]
+    },
+    business: {
+      icon: "📋", label: "Management & community roles",
+      hint: "You enjoy leading people, running a business, or looking after a community.",
+      careers: ["catering_manager", "restaurant_manager", "school_lunchtime_supervisor", "street_food_trader"]
+    }
+  };
+
+  const categoryOrder = ["kitchen", "hospitality", "baking", "butchery", "production", "business"];
+
+  // ---------- Quiz questions ----------
+  // Part 1 (4 questions): narrows down the general area of the food industry.
+  const categoryQuestions = [
+    {
+      title: "What kind of daily environment do you enjoy most?",
+      options: [
+        {icon:"🔥", text:"A busy professional kitchen", scores:{kitchen:2}},
+        {icon:"💬", text:"A restaurant, bar or cafe with customers", scores:{hospitality:2}},
+        {icon:"🧁", text:"A bakery or pastry kitchen", scores:{baking:2}},
+        {icon:"🥩", text:"A butcher's shop or fish counter", scores:{butchery:2}},
+        {icon:"🏭", text:"A factory or production facility", scores:{production:2}},
+        {icon:"📋", text:"An office managing a team or business", scores:{business:2}}
+      ]
+    },
+    {
+      title: "Which task sounds most enjoyable to you?",
+      options: [
+        {icon:"🍳", text:"Cooking and plating dishes", scores:{kitchen:2}},
+        {icon:"🍽️", text:"Serving customers food or drinks", scores:{hospitality:2}},
+        {icon:"🎂", text:"Baking or decorating something by hand", scores:{baking:2}},
+        {icon:"🔪", text:"Preparing fresh meat or fish", scores:{butchery:2}},
+        {icon:"⚙️", text:"Operating machines that make food", scores:{production:2}},
+        {icon:"🧾", text:"Planning schedules and budgets", scores:{business:2}}
+      ]
+    },
+    {
+      title: "What matters most to you in a job?",
+      options: [
+        {icon:"🔥", text:"Cooking creatively under pressure", scores:{kitchen:2}},
+        {icon:"❤️", text:"Helping and serving people directly", scores:{hospitality:2}},
+        {icon:"🎨", text:"Precise, artistic craft work", scores:{baking:2}},
+        {icon:"🥓", text:"Hands-on preparation of quality ingredients", scores:{butchery:2}},
+        {icon:"🔧", text:"Working with machines or technical systems", scores:{production:2}},
+        {icon:"🧑‍🤝‍🧑", text:"Leading and organising other people", scores:{business:2}}
+      ]
+    },
+    {
+      title: "Pick a weekend activity you'd enjoy.",
+      options: [
+        {icon:"👨‍🍳", text:"Cooking a new recipe at home", scores:{kitchen:2}},
+        {icon:"☕", text:"Working at a cafe or restaurant counter", scores:{hospitality:2}},
+        {icon:"🍰", text:"Baking a cake or bread from scratch", scores:{baking:2}},
+        {icon:"🐟", text:"Visiting a butcher's shop or fish market", scores:{butchery:2}},
+        {icon:"🍺", text:"Learning how food or drinks are made in bulk", scores:{production:2}},
+        {icon:"🚀", text:"Organising an event or a small business idea", scores:{business:2}}
+      ]
+    }
+  ];
+
+  // Part 2 (2 questions): once we know the area, these narrow down the exact job.
+  const roleQuizzes = {
+    kitchen: [
+      {
+        title: "How much responsibility do you want right away?",
+        options: [
+          {icon:"🌱", text:"Start simple and learn as I go", scores:{kitchen_assistant:2, kitchen_porter:1}},
+          {icon:"🍳", text:"Actively cook and create dishes", scores:{chef:2, fish_frier:1}},
+          {icon:"👑", text:"Lead a kitchen team one day", scores:{head_chef:2}},
+          {icon:"🧽", text:"A calm, behind-the-scenes role", scores:{kitchen_porter:2}}
+        ]
+      },
+      {
+        title: "Which task sounds best to you?",
+        options: [
+          {icon:"🎨", text:"Plating a creative, beautiful dish", scores:{chef:2}},
+          {icon:"📊", text:"Managing budgets, staff and menus", scores:{head_chef:2}},
+          {icon:"🥕", text:"Prepping ingredients and supporting the team", scores:{kitchen_assistant:2}},
+          {icon:"🍟", text:"Cooking fast food to order for customers", scores:{fish_frier:2}},
+          {icon:"🧼", text:"Washing up and keeping the kitchen running", scores:{kitchen_porter:2}}
+        ]
+      }
+    ],
+    hospitality: [
+      {
+        title: "Which service style do you like most?",
+        options: [
+          {icon:"🍽️", text:"Serving meals and taking orders at tables", scores:{waiter:2}},
+          {icon:"🍹", text:"Serving drinks in a bar or pub", scores:{bar_person:2}},
+          {icon:"☕", text:"Making coffee and specialty drinks", scores:{barista:2}},
+          {icon:"🛎️", text:"Quick counter service and payments", scores:{counter_service_assistant:2}}
+        ]
+      },
+      {
+        title: "What's the atmosphere you enjoy most?",
+        options: [
+          {icon:"🕯️", text:"A relaxed restaurant with regular guests", scores:{waiter:1}},
+          {icon:"🎶", text:"A lively bar with drinks and music", scores:{bar_person:1}},
+          {icon:"⚡", text:"A fast coffee shop with quick turnover", scores:{barista:1}},
+          {icon:"🏃", text:"A quick-service counter, fast and simple", scores:{counter_service_assistant:1}}
+        ]
+      }
+    ],
+    baking: [
+      {
+        title: "Which of these appeals to you more?",
+        options: [
+          {icon:"🍞", text:"Baking bread and everyday baked goods", scores:{baker:2}},
+          {icon:"🎂", text:"Designing and decorating special occasion cakes", scores:{cake_decorator:2}},
+          {icon:"🥐", text:"Creating desserts and pastries in a restaurant", scores:{pastry_chef:2}}
+        ]
+      },
+      {
+        title: "What matters most to you at work?",
+        options: [
+          {icon:"⏰", text:"Consistency and early morning routines", scores:{baker:2}},
+          {icon:"🖌️", text:"Artistic detail and creativity", scores:{cake_decorator:2}},
+          {icon:"👩‍🍳", text:"Working as part of a professional kitchen team", scores:{pastry_chef:2}}
+        ]
+      }
+    ],
+    butchery: [
+      {
+        title: "Which product interests you more?",
+        options: [
+          {icon:"🥩", text:"Meat and poultry", scores:{butcher:2}},
+          {icon:"🐟", text:"Fish and seafood", scores:{fishmonger:2}}
+        ]
+      },
+      {
+        title: "Which task sounds more appealing?",
+        options: [
+          {icon:"🔪", text:"Cutting and preparing different cuts of meat", scores:{butcher:2}},
+          {icon:"🐠", text:"Filleting fish and advising on seafood recipes", scores:{fishmonger:2}}
+        ]
+      }
+    ],
+    production: [
+      {
+        title: "Which role sounds most interesting to you?",
+        options: [
+          {icon:"🏭", text:"Operating machines that make food products", scores:{food_factory_worker:2}},
+          {icon:"🥓", text:"Preparing meat products on a production line", scores:{meat_process_worker:2}},
+          {icon:"🔍", text:"Checking safety and quality standards", scores:{food_manufacturing_inspector:2}},
+          {icon:"🔧", text:"Fixing and maintaining drinks systems", scores:{cellar_technician:2}},
+          {icon:"🍺", text:"Brewing your own beer, cider or gin", scores:{microbrewer:2}}
+        ]
+      },
+      {
+        title: "Which skill would you enjoy using most?",
+        options: [
+          {icon:"📋", text:"Following clear steps and procedures", scores:{food_factory_worker:1}},
+          {icon:"💪", text:"Physical, hands-on teamwork", scores:{meat_process_worker:1}},
+          {icon:"📝", text:"Careful inspection and record-keeping", scores:{food_manufacturing_inspector:1}},
+          {icon:"🛠️", text:"Technical and mechanical problem-solving", scores:{cellar_technician:1}},
+          {icon:"🚀", text:"Creativity and running a small business", scores:{microbrewer:1}}
+        ]
+      }
+    ],
+    business: [
+      {
+        title: "Which setting appeals to you most?",
+        options: [
+          {icon:"📋", text:"Running food service for schools, colleges or events", scores:{catering_manager:2}},
+          {icon:"🍴", text:"Managing a restaurant and its team", scores:{restaurant_manager:2}},
+          {icon:"🧒", text:"Looking after children during school lunchtime", scores:{school_lunchtime_supervisor:2}},
+          {icon:"🚚", text:"Running your own food stall or van", scores:{street_food_trader:2}}
+        ]
+      },
+      {
+        title: "What's most rewarding to you?",
+        options: [
+          {icon:"📊", text:"Organising budgets and logistics", scores:{catering_manager:1}},
+          {icon:"😊", text:"Making sure customers are happy", scores:{restaurant_manager:1}},
+          {icon:"🧑‍🏫", text:"Caring for children's wellbeing", scores:{school_lunchtime_supervisor:1}},
+          {icon:"🚀", text:"Being your own boss", scores:{street_food_trader:1}}
+        ]
+      }
+    ]
+  };
+
+  const TOTAL_STEPS = 6; // 4 category questions + 2 role-narrowing questions
+
+  // ---------- Quiz state ----------
+  let step = 0; // 0-3 = category questions, 4-5 = role questions
+  const catAnswers = [null, null, null, null];
+  let selectedCategory = null;
+  let roleAnswers = [null, null];
+
+  const questionTitle = document.getElementById("question-title");
+  const questionSubtitle = document.getElementById("question-subtitle");
+  const optionGrid = document.getElementById("option-grid");
+  const progressLabel = document.getElementById("progress-label");
+  const progressPercent = document.getElementById("progress-percent");
+  const progressFill = document.getElementById("progress-fill");
+  const backBtn = document.getElementById("back-btn");
+  const nextBtn = document.getElementById("next-btn");
+  const quizSection = document.getElementById("quiz");
+  const resultSection = document.getElementById("result");
+  const navResult = document.getElementById("nav-result");
+
+  function computeBestCategory() {
+    const totals = {};
+    categoryOrder.forEach(k => totals[k] = 0);
+    catAnswers.forEach((choiceIndex, qIndex) => {
+      if (choiceIndex === null) return;
+      const scores = categoryQuestions[qIndex].options[choiceIndex].scores;
+      Object.keys(scores).forEach(k => totals[k] += scores[k]);
+    });
+    let best = categoryOrder[0];
+    categoryOrder.forEach(k => { if (totals[k] > totals[best]) best = k; });
+    return best;
+  }
+
+  function computeBestCareer(catKey) {
+    const careerKeys = categories[catKey].careers;
+    const totals = {};
+    careerKeys.forEach(k => totals[k] = 0);
+    const quiz = roleQuizzes[catKey];
+    roleAnswers.forEach((choiceIndex, qIndex) => {
+      if (choiceIndex === null) return;
+      const scores = quiz[qIndex].options[choiceIndex].scores;
+      Object.keys(scores).forEach(k => { if (totals[k] !== undefined) totals[k] += scores[k]; });
+    });
+    let best = careerKeys[0];
+    careerKeys.forEach(k => { if (totals[k] > totals[best]) best = k; });
+    return best;
+  }
+
+  function currentQuestion() {
+    if (step < 4) return categoryQuestions[step];
+    return roleQuizzes[selectedCategory][step - 4];
+  }
+
+  function currentAnswerIndex() {
+    return step < 4 ? catAnswers[step] : roleAnswers[step - 4];
+  }
+
+  function setCurrentAnswer(i) {
+    if (step < 4) catAnswers[step] = i;
+    else roleAnswers[step - 4] = i;
+  }
+
+  function renderStep() {
+    const q = currentQuestion();
+    progressLabel.textContent = `Question ${step + 1} of ${TOTAL_STEPS}`;
+    const pct = Math.round(step / TOTAL_STEPS * 100);
+    progressPercent.textContent = pct + "%";
+    progressFill.style.width = pct + "%";
+
+    questionTitle.textContent = q.title;
+    questionSubtitle.textContent = step < 4
+      ? "Part 1 of 2: finding your general area."
+      : `Part 2 of 2: narrowing down your exact job in ${categories[selectedCategory].label}.`;
+
+    optionGrid.innerHTML = "";
+    q.options.forEach((opt, i) => {
+      const b = document.createElement("button");
+      b.className = "answer-option";
+      b.type = "button";
+      if (currentAnswerIndex() === i) b.classList.add("selected");
+      b.innerHTML = `<span class="option-icon">${opt.icon}</span><span>${opt.text}</span>`;
+      b.addEventListener("click", () => { setCurrentAnswer(i); renderStep(); });
+      optionGrid.appendChild(b);
+    });
+
+    backBtn.disabled = step === 0;
+    nextBtn.disabled = currentAnswerIndex() === null;
+    nextBtn.textContent = step === TOTAL_STEPS - 1 ? "See my result" : "Next question";
+  }
+
+  backBtn.addEventListener("click", () => {
+    if (step === 0) return;
+    step--;
+    // Crossing back into category questions invalidates the role-specific answers,
+    // since the role question set depends on the (possibly changing) category.
+    if (step === 3) roleAnswers = [null, null];
+    renderStep();
+  });
+
+  nextBtn.addEventListener("click", () => {
+    if (currentAnswerIndex() === null) return;
+
+    if (step === 3) {
+      // Just finished the category questions: lock in the category and reset role answers.
+      selectedCategory = computeBestCategory();
+      roleAnswers = [null, null];
+    }
+
+    if (step < TOTAL_STEPS - 1) {
+      step++;
+      renderStep();
+    } else {
+      const bestCareer = computeBestCareer(selectedCategory);
+      showResult(bestCareer);
+    }
+  });
+
+  function renderResult(key) {
+    const c = careers[key];
+    document.getElementById("result-icon").textContent = c.icon;
+    document.getElementById("result-title").textContent = c.title;
+    document.getElementById("result-altnames").textContent = c.altNames ? `Also called: ${c.altNames}` : "";
+    document.getElementById("result-lede").textContent = c.lede;
+    document.getElementById("result-day").textContent = c.day;
+    document.getElementById("result-hazards").innerHTML = c.hazards.map(h => `<li>${h}</li>`).join("");
+
+    document.getElementById("result-skills").innerHTML = c.skills.map(s => `<li>${s}</li>`).join("");
+    document.getElementById("result-path").innerHTML = c.path.map(s => `<li>${s}</li>`).join("");
+
+    document.getElementById("result-vocab").innerHTML = c.vocab.map(v => `
+      <div class="vocab-item">
+        <span class="vocab-term">${v.term}</span><span class="vocab-pos">${v.pos}</span>
+        <div class="vocab-def">${v.def}</div>
+        <div class="vocab-example">"${v.ex}"</div>
+      </div>
+    `).join("");
+  }
+
+  function showResult(key) {
+    renderResult(key);
+    quizSection.classList.add("hidden");
+    resultSection.classList.remove("hidden");
+    navResult.classList.remove("hidden");
+    progressFill.style.width = "100%";
+    goTo("result");
+  }
+
+  document.getElementById("retake-btn").addEventListener("click", () => {
+    step = 0;
+    catAnswers.fill(null);
+    roleAnswers = [null, null];
+    selectedCategory = null;
+    resultSection.classList.add("hidden");
+    navResult.classList.add("hidden");
+    quizSection.classList.remove("hidden");
+    renderStep();
+    goTo("quiz");
+  });
+
+  // ---------- Explore all careers, grouped by category ----------
+  const careerGroups = document.getElementById("career-groups");
+  categoryOrder.forEach(catKey => {
+    const cat = categories[catKey];
+    const block = document.createElement("div");
+    block.className = "category-block";
+
+    const heading = document.createElement("div");
+    heading.className = "category-heading";
+    heading.innerHTML = `<span class="cat-icon">${cat.icon}</span><h3>${cat.label}</h3>`;
+    block.appendChild(heading);
+
+    const grid = document.createElement("div");
+    grid.className = "career-grid";
+    cat.careers.forEach(key => {
+      const c = careers[key];
+      const card = document.createElement("button");
+      card.className = "career-card";
+      card.type = "button";
+      card.innerHTML = `
+        <div class="career-icon">${c.icon}</div>
+        <h4>${c.title}</h4>
+        <p>${c.lede}</p>
+      `;
+      card.addEventListener("click", () => {
+        renderResult(key);
+        quizSection.classList.add("hidden");
+        resultSection.classList.remove("hidden");
+        navResult.classList.remove("hidden");
+        goTo("result");
+      });
+      grid.appendChild(card);
+    });
+
+    block.appendChild(grid);
+    careerGroups.appendChild(block);
+  });
+
+  // ---------- Reliable in-page navigation ----------
+  // All nav buttons use data-target + this scroll helper instead of <a href="#...">,
+  // so clicking never triggers a real page/frame navigation of any kind.
+  function goTo(targetId) {
+    const target = document.getElementById(targetId);
+    if (!target) return;
+    target.classList.remove("hidden");
+    const navHeight = document.querySelector("nav").offsetHeight;
+    const top = target.getBoundingClientRect().top + window.pageYOffset - (navHeight + 16);
+    window.scrollTo({ top, behavior: "smooth" });
+  }
+
+  document.querySelectorAll("[data-target]").forEach(el => {
+    el.addEventListener("click", () => goTo(el.getAttribute("data-target")));
+  });
+
+  // ---------- Init ----------
+  renderStep();
+</script>
+
+</body>
+</html>
